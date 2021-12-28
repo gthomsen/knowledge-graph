@@ -1,6 +1,6 @@
 Tags: #scientific-computing #netcdf
 
-Changing the chunk size requires an out-of-place copy and can be done with NCO's `nccopy`.
+Changing the [[Chunking in netCDF|chunk size]] requires an out-of-place copy and can be done with NCO's `nccopy`.
 
 The new chunk dimensions are specified as comma separated list of dimensions and their sizes (e.g. `z/1,y/384,x/256` to specify `1x384x256` slices).
 
