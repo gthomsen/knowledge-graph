@@ -4,7 +4,7 @@ Small dataset of common British flowers.
 
 | Source | Date | Label Types | Samples (Train/Test) | Classes | Commercial Use? |
 | --- | --- | --- | --- | --- | --- |
-| [Paper](https://www.robots.ox.ac.uk/~vgg/publications/2006/Nilsback06/), [Homepage](https://www.robots.ox.ac.uk/~vgg/data/flowers/17/index.html), [Dataset](https://www.robots.ox.ac.uk/~vgg/data/bicos/data/oxfordflower17.tar) | 2006 | Labels, BiCoS segmentation | 1,360 (?, ?) | 17 | Unknown |
+| [Paper](https://www.robots.ox.ac.uk/~vgg/publications/2006/Nilsback06/), [Homepage](https://www.robots.ox.ac.uk/~vgg/data/flowers/17/index.html), [Dataset](https://www.robots.ox.ac.uk/~vgg/data/bicos/data/oxfordflower17.tar) | 2006 | Labels, BiCoS segmentation | 1,360 (?/?) | 17 | Unknown |
 
 # Details
 From the VGG group in Oxford.

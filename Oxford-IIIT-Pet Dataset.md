@@ -4,7 +4,7 @@ Small curated image collection of cats and dogs with bounding boxes and segmenta
 
 | Source | Date | Label Types | Samples (Train/Test) | Classes | Commercial Use? |
 | --- | --- | --- | --- | --- | --- |
-| [Paper](https://www.robots.ox.ac.uk/~vedaldi/assets/pubs/parkhi12cat.pdf) | 2012 | Classes, bounding boxes, trimap segmentation | 7,049 (3,680, 3,369) | 37 | Unknown |
+| [Paper](https://www.robots.ox.ac.uk/~vedaldi/assets/pubs/parkhi12cat.pdf) | 2012 | Classes, bounding boxes, trimap segmentation | 7,049 (3,680/3,369) | 37 | Unknown |
 
 # Details
 From the VGG group at Oxford.

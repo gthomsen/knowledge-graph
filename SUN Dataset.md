@@ -4,7 +4,7 @@ Large-scale Scene UNderstanding (SUN) database.  Superset of the [[SUN397 Datase
 
 | Source | Date | Label Types | Samples (Train/Test) | Classes | Commercial Use? |
 | --- | --- | --- | --- | --- | --- |
-| [Paper #1](https://vision.princeton.edu/projects/2010/SUN/paper.pdf), [Paper #2](https://vision.princeton.edu/projects/2010/SUN/paperIJCV.pdf), [Homepage](https://vision.princeton.edu/projects/2010/SUN/), [Code](https://vision.princeton.edu/projects/2010/SUN/source_code/) | Labels, instance segmentation masks | 131,072 (?, ?) | 908 | Unknown|
+| [Paper #1](https://vision.princeton.edu/projects/2010/SUN/paper.pdf), [Paper #2](https://vision.princeton.edu/projects/2010/SUN/paperIJCV.pdf), [Homepage](https://vision.princeton.edu/projects/2010/SUN/), [Code](https://vision.princeton.edu/projects/2010/SUN/source_code/) | Labels, instance segmentation masks | 131,072 (?/?) | 908 | Unknown|
 
 # Details
 Aude Olivia was involved.
