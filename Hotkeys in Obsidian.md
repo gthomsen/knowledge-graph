@@ -1,6 +1,5 @@
 Tags: #obsidian #tools #cheatsheet #macos #user-configuration 
 
-
 **NOTE:** This is MacOS-specific, though presumably the command key can be replaced with control for other systems.
 
 Notes:

@@ -11,7 +11,7 @@ First "large" and diverse collection of labeled color images.
 From Fei-Fei Li's lab.  Used as part of the Large Scale Visual Recognition Challenges from 2012 to 2017.
 
 ## Samples
-Samples are centered and visually diverse so the class averages aren't distinctive.
+Samples are centered and visually diverse so the class averages aren't distinctive.  Average size is 469x387 though is typically cropped or resized to 224x224.
 
 [Full dataset](https://www.image-net.org/download) is restricted and only available for non-commercial use.
 
