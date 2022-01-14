@@ -6,6 +6,7 @@ First "large" and diverse collection of labeled color images.
 | --- | --- | --- | --- | --- | --- | --- |
 | ImageNet | [CVPR09 Paper](https://www.image-net.org/static_files/papers/imagenet_cvpr09.pdf) | 2009 | Classes | 1,431,167 (1,281,167/50,000/100,000) | 1,000 | No |
 | ImageNet 14M | - | ? | Classes | 14,197,122 (?/?/?) | 21,841 | No |
+| MicroImageNet / Tiny ImageNet | [Kaggle](https://www.kaggle.com/c/tiny-imagenet/overview) | Classes | 110,000 (100,000/10,000) | 200 | No |
 
 # Details
 From Fei-Fei Li's lab.  Used as part of the Large Scale Visual Recognition Challenges from 2012 to 2017.
@@ -15,10 +16,14 @@ Samples are centered and visually diverse so the class averages aren't distincti
 
 [Full dataset](https://www.image-net.org/download) is restricted and only available for non-commercial use.
 
+### Tiny ImageNet
+200 classes each with 500/50/50 samples for train/validate/testing. Each image is 64x64 color.
+
 ## Labels
 Labeling was done using Amazon's Mechanical Turk and samples were filtered so that only those with consensus were used.
 
-# Classes
+## Classes
+### ImageNet - 1K
 - abacus
 - abaya
 - academic_gown
