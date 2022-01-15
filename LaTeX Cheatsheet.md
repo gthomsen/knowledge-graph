@@ -16,14 +16,22 @@ Subset of symbols I use:
 | $\lessapprox$ | `\lessapprox` | Approximately less than or equal to |
 | $\gtrapprox$ | `\gtrapprox` | Approximately greater than or equal to |
 | $\overset{\Delta}{=}$ | `\overset{\Delta}{=}` | Triangle equals |
+| $\rightarrow$ | `\rightarrow` | Right arrow |
+| $\infty$ | `\infty` | Infinity |
 
-Forcing the limits of a summation/product to be below or above the sigma or pi:
+Forcing the limits of a summation/product/max to be below or above the sigma or pi:
 
 $\sum \limits_{i} A_{i}$ is `\sum \limits_{i} A_{i}`
 
 Writing an underbrace:
 $\underbrace{x + \cdots + x}_{n \rm times}$  is `\underbrace{x + \cdots + x}_{n \rm times}`
 
+# Formatting
+
 Scripted letters (calligraphic) are done with `\mathcal{...}` like so: $\mathcal{N}$.
+
+Bold letters are done with `\textbf{...}` like so: $\textbf{N}$ vs $N$.
+
+Cursive lower-case $\ell$ is `\ell`.
 
 Recommended ["Short Math Guide for LaTeX"](https://www.math.hkbu.edu.hk/TeX/short-math-guide.pdf) primer.

@@ -10,7 +10,7 @@ Small curated image collection of cats and dogs with bounding boxes and segmenta
 From the VGG group at Oxford.
 
 ## Samples
-Publicly available color images centered on pets.  Reasonable diversity in samples.
+Publicly available color images centered on pets.  Reasonable diversity in samples.  Image dimensions are typically at least 200 pixels.
 
 [![Example Pets Montage](resources/oxford-iiit-pet-montage.png)]
 

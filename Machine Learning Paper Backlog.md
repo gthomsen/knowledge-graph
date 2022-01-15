@@ -33,6 +33,7 @@ List of papers I'll never get a chance to read.
 
 ## Object Detection
 - ["Learning non-maximum suppression"](https://arxiv.org/abs/1705.02950) by Hosang, Benenson, and Schiele (2017). Trainable non-maximal suppression (NMS) using only boxes and scores.  Replaces hand-crafted non-trainable methods.
+- ["End-to-End Object Detection with Adaptive Clustering Transformer"](https://arxiv.org/abs/2011.09315) by Zheng et al (2021).  Presents DETR to do object detection with Transformers.
 - ["UP-DETR: Unsupervised Pre-training for Object Detection with Transformers"](https://arxiv.org/abs/2011.09094) by Dai et al (2021).  Unsupervised training and supervised distillation using transformers for object detection.
 
 ## Segmentation
@@ -41,3 +42,4 @@ List of papers I'll never get a chance to read.
 # Miscellaneous
 - ["The Hardware Lottery"](https://arxiv.org/abs/2009.06489v1) by Sara Hooker (2020).  Discussion about how hardware selection has prevented progress because otherwise successful ideas didn't map onto the existing hardware.
 - ["Deep Learning Interviews"](https://arxiv.org/ftp/arxiv/papers/2201/2201.00650.pdf) by Shlomo Kashani (2020).
+- ["Large Batch Training of Convolutional Networks"](https://arxiv.org/abs/1708.03888v3) by You (2017).  Presents layer-wise adaptive rate scaling (LARS).

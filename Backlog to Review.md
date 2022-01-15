@@ -85,18 +85,22 @@ Junk drawer of things to look at when I have infinite free time.
 - [Deep dive on GPUs and ML](https://timdettmers.com/2020/09/07/which-gpu-for-deep-learning/#Do_Not_Buy_These_GPUs).  Selecting GPUs for training and inferencing, focused on individual developers rather than large corporate clusters.
 - [Gradient checkpointing with PyTorch](https://spell.ml/blog/gradient-checkpointing-pytorch-YGypLBAAACEAefHs) blog post.
 - [L1 vs L2 regularization](https://explained.ai/regularization/L1vsL2.html).  Figures showing the difference.
+- Layer-wise Adaptive Rate Scaling (LARS) is used to train convolutional networks with very large batch sizes.  Presented in ["Large Batch Training of Convolutional Networks"](https://arxiv.org/abs/1708.03888v3) by You (2017).
 
 ## Activation Functions
 - Swish and Hard Swish.  Hard Swish is designed to be mobile processor friendly.
 
 ## Datasets
-- INat18, INat18
+- [Places205](https://proceedings.neurips.cc/paper/2014/file/3fe94a002317b5f9259f82690aeea4cd-Paper.pdf) (used in SWaV).  Successor to [[SUN Dataset]].
 - VTAB - 19 tasks
-- MNIST 8M
-- DAVIS17
 - Google Landmark V2 (GLDv2)
-- Copydays
-- YFCC100M
+- Remote sensing datasets:
+    - UC Merced by Yang et al.  256x256 color images with 30cm spatial resolution from USGS National Map Urban Area Imagery
+    - Derived from GoogleEarth with 30cm spatial resolution:
+        - PatternNet
+        - NWPU-RESISC45
+    - Aerial Image Dataset (AID) with 30 classes and 200-400 images per class.  Images are 600x600.
+    - 
 
 ## Representations
 - [Assessing quality of representations](https://wp.nyu.edu/cilvr/2020/09/24/representation-quality-and-the-complexity-of-learning/). Mentions the [Reprieve library](https://github.com/willwhitney/reprieve) for measuring quality - framework measures loss against a dataset and computes publication-ready plots.

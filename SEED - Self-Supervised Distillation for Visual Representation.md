@@ -39,7 +39,7 @@ Psuedo-code for the algorithm:
 | Augmentation | Probability | Parameters |
 | --- | --- | --- |
 | Resized Crop | 100% | Rescale the image to scale of $[0.2, 1.0]$, then crop to 224 $\times$ 224 |
-| Color Jitter | 80% | Adjust brightness up to $[0.4, 0.4, 0.4, 0.1]$ in each channel |
+| Color Jitter | 80% | Adjust (brightness, contrast, saturation, hue) up to $[0.4, 0.4, 0.4, 0.1]$ in each channel |
 | Grayscale Conversion |  20% | Convert to grayscale |
 | Gaussian Blur | 50% | Blur with kernel $\sigma \in [0.1, 0.2]$ |
 | Horizontal Flip | 50% | Horizontal flip |

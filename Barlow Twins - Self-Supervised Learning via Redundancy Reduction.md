@@ -42,16 +42,18 @@ Uses the LARS optimizer.
 10 epoch warmup before using cosine decay schedule for learning rate (decreasing by 1000x over the entire time).
 
 ## Augmentations
-Augmentations performed include:
-1. Random cropping
-2. Resizing to 224 $\times$ 224  
-3. Horizontal flipping
-4. Color jitter
-5. Grayscale conversion
-6. Gaussian blurring
-7. Solarization
+From their [Github implementation](https://github.com/facebookresearch/barlowtwins/blob/main/main.py):
+
+| Augmentation | Probability | Parameters |
+| --- | --- | --- |
+| Resized Crop | 100% | Rescale the image to scale of XXX, then crop to 224 $\times$ 224 |
+| Horizontal Flip | 50% | Horizontal flip |
+| Color Jitter | 80% | Adjust (brightness, contrast, saturation, hue) up to $[0.4, 0.4, 0.2, 0.1]$ in each channel |
+| Grayscale Conversion | 20% | Convert to grayscale |
+| Gaussian Blur | 100% | Blur with kernel $\sigma \in [0.1, 2.9]$ |
+| Solarization | 20% | |
 
 # Ablations
 Care was taken to identify the key performance factors.  The invariance term must exist, otherwise the model fails to converge.  Independence of components in $Z^{A}$ is the next largest factor.  Both of these make sense since they directly contribute to the diagonal terms compared against the identity matrix.
 
-The method is relatively robust to a range of batch sizes, $b \in \{128, 256, 512, 1024, 2048, 4096\}, with a spread of 2% on Top-1 accuracy.
+The method is relatively robust to a range of batch sizes, $b \in \{128, 256, 512, 1024, 2048, 4096\}$, with a spread of 2% on Top-1 accuracy.

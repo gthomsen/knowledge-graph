@@ -10,7 +10,7 @@ Subset of the Scene UNderstanding (SUN) database.  All scene categories have at 
 Aude Olivia was involved.
 
 ## Samples
-Dataset is 39 GB compressed.  [Original URLs](https://vision.princeton.edu/projects/2010/SUN/urls/) for scenes in the database.
+Dataset is 39 GB compressed.  [Original URLs](https://vision.princeton.edu/projects/2010/SUN/urls/) for scenes in the database.  Color images at least 200x200 in size.
 
 ## Labels
 Segmentation masks are per-instance.

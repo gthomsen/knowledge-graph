@@ -9,7 +9,7 @@ Small of common British flowers.
 # Details
 From the VGG group in Oxford.
 ## Samples
-Color images of flowers.  Each class has 40 to 258 samples in it. Train and validation splits have at least 10 samples of each class, while test has at least 20 samples per class.
+Color images of flowers with each dimension having at least 500 pixels.  Each class has 40 to 258 samples in it. Train and validation splits have at least 10 samples of each class, while test has at least 20 samples per class.
 
 ## Labels
 Classes and BiCoS segmentations that separate foreground and background.
