@@ -13,7 +13,7 @@ Self-attention provides several key benefits:
 
 Symbol position is encoded as a sinusoidal embedding that is summed into the input symbol.  A learned position encoding did not appear to change the model performance either way.
 
-[Tensor2Tensor implementation](https://github.com/tensorflow/tensor2tensor) in TensorFlow.
+[Tensor2Tensor implementation](https://github.com/tensorflow/tensor2tensor) in TensorFlow.  This integrates a **LOT** of features and is not easy to readily understand - start with [bin/t2t_trainer.py](https://github.com/tensorflow/tensor2tensor/blob/master/tensor2tensor/bin/t2t_trainer.py).
 
 # Models
 

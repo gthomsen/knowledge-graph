@@ -30,6 +30,7 @@ List of papers I'll never get a chance to read.
 # Computer Vision
 - ["Swin Transformer V2: Scaling Up Capacity and Resolution"](https://arxiv.org/abs/2111.09883v1) by Liu, Hu, Yao, Xie, Wei, Ning, Cao, Zhang, Dong, Wei, and Guo (2021).  Techniques to bootstrap high resolution models from lower resolution images, and train big models on regular GPUs.
 - ["A Survey of Visual Transformers"](https://arxiv.org/abs/2111.06091) by Liu, Zhang, Wang, Hou, and Yuan (2021)
+- ["How to train your ViT? Data, Augmentation, and Regularlization in Vision Transformers"](https://arxiv.org/abs/2106.10270) by Steiner et al (2021).  Explores the amount of performance gain from data augmentation from the standpoint of training with smaller datasets.
 
 ## Object Detection
 - ["Learning non-maximum suppression"](https://arxiv.org/abs/1705.02950) by Hosang, Benenson, and Schiele (2017). Trainable non-maximal suppression (NMS) using only boxes and scores.  Replaces hand-crafted non-trainable methods.

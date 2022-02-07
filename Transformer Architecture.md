@@ -15,6 +15,8 @@ Transformers transform a sequence of inputs into a sequence of outputs, therefor
 ## Input and Output Blocks
 Both input and output are stacks of blocks (like ResNet).  Each block's sublayer is connected via residual connections, which ultimately forces the embedding size to remain constant within each block (and, ultimately, all blocks).
 
+Residual connections can carry [[#Position Encoding|positional encoding]] from the inputs throughout the layers.  Without this, the output of the first multi-head attention block will have eliminated position information.
+
 Dropout can be applied to the residual connections.
 
 Multiple attention heads generate a portion of the overall embedding and are concatenated together.
@@ -35,6 +37,8 @@ Each attention head is comprised of three learned parameters that compute a sub-
 
 ![Multi-head Attention Diagram](resources/transformer-multi-head-attention-diagram.png)
 
+Inputs to the block are sized $(batch, sequence, embedding)$ and each $(sequence, embedding)$ is the matrix supplied to $Q$, $K$, and $V$.
+
 Attention is simply softmax applied to scaled-dot product and is defined as:
 
 Attention$(Q, K, V)=$ softmax$(\frac{QK^{T}}{\sqrt{d_{k}}})V$
@@ -45,10 +49,23 @@ The scaled dot-product is defined as:
 
 Scaling is required to balance large dot product magnitudes stemming from large input vectors.  For variables $q$ and $k$ with $\mu = 0$ and $\sigma^{2} = 1$, their dot product $<q, k>=\Sigma_{i}^{d_{k}} q_{i}k_{i}$ has $\mu = 0$ and $\sigma^{2} = d_{k}$. The authors believe this pushes the softmax function into regions with very small gradients, so by scaling $QK^{T}$ by $\frac{1}{\sqrt{d_{k}}}$ maintains unity variance and keeps softmax in a stable regime.
 
-
 # Position Encoding
 Position of each symbol in the sequence is encoded into the data itself, typically by summation.
 
 The position embedding can be learned, though the original [[Attention is All You Need|"Attention is All You Need"]] paper showed that it did not affect the results, for good or bad.
 
 Clever choice of position embedding scheme can allow a model to train at one "resolution" and then be used at another.  The symbol size remains the same (so that embeddings mean the same thing) but the sequence that the symbols are drawn from changes.  This change between train and use is possible by interpolating the position encoding symbol and was suggested by [[An Image is Worth 16x16 Words - Transformers for Image Recognition at Scale#Position Encoding|"An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale"]].
+
+Dropout is sometimes applied to the symbol after the position has been added, like so:
+
+```python
+patch_with_embedding = patch + self.position_embedding
+
+if self.dropout > 0.0:
+    patch_with_embedding = self.dropout( patch_with_embedding )
+```
+
+# Input Embeddings
+Inputs to the transform depend on the source domain.
+
+Vision models can use a single convolutional layer, or a [[An Image is Worth 16x16 Words - Transformers for Image Recognition at Scale#Google Research Implementation|full ResNet-50 backbone]].  NLP models can use [[NLP Word Embeddings#Word2vec|context-independent word embeddings]], or context-aware learned embeddings, possibly adding segment-level information (presumably sentence- or paragraph-level information).

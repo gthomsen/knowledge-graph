@@ -28,8 +28,8 @@ Derived from the Appendix A's Table 2:
 | Natural | SVHN | 73,257 | 10 |
 | Specialized | [[EuroSAT Dataset|EuroSAT]] | 21,600 | 10 |
 | Specialized | [[Resisc45 Dataset|Resisc45]] | 25,200 | 45 |
-| Specialized | Patch Camelyon | 294,912 | 2 |
-| Specialized | Retinopathy | 46,032 | 5 |
+| Specialized | [[Patch Camelyon (PCam) Dataset|Patch Camelyon]] | 294,912 | 2 |
+| Specialized | [[Diabetic Retinopathy Dataset|Retinopathy]] | 46,032 | 5 |
 | Structured | Clevr/count | 70,000 | 8 |
 | Structured | Clevr/distance | 70,000 | 6 |
 | Structured | dSprites/location | 663,552 | 16 |
