@@ -5,7 +5,7 @@ Some systems do not install `net-tools` which means `ifconfig` is no where to be
 # Listing Adapter Addresses
 To determine the address of each adapter:
 ```shell
-$ awk '/32 host/ { print f } {f=$2}' <<< "$(</proc/net/fib_trie)"
+$ awk '/32 host/ { print f } {f=$2}' <<< "$(</proc/net/fib_trie)" | sort -u
 ```
 
 # Listing Adapter Routes
