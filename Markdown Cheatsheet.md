@@ -10,8 +10,17 @@ No standard syntax for linking images.
 [Random gist](https://gist.githubusercontent.com/jongalloway/2e473d902406589db213c6cc1cb82e99/raw/65e5b3bd9eeb66926fae13192600c27aa8d9f69c/markdown-image-with-link.md)
 
 ```markdown
-[![Link Text - Possibly Alt Text](https://test.link/somewhere)]
+![Link Text - Possibly Alt Text](https://test.link/somewhere)
 ```
+
+# Links
+References to a section within the current document are done like so:
+
+`[Link Text](#section-name)`
+
+Where `#section-name` is always lower-case and hyphenated, regardless of how the section heading was formatted (e.g. upper-case and spaced).  Note that punctuation appears to be dropped from section names (e.g. the section `# Foo.Bar` is referenced by `#foobar`). There is no distinction between the section heading (i.e. `#Section Name` vs `###Section Name`).
+
+Unclear if this is part of the specification, though Github supports it and so it is de facto specification that other tools follow (e.g. Pandoc).
 
 # Tables
 
