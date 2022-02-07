@@ -1,0 +1,1 @@
+Be conservative in what you send; be liberal in what you accept.

@@ -2,6 +2,11 @@ Tags: #todo
 
 Junk drawer of things to look at when I have infinite free time.
 
+# News and Reviews
+- High SNR longer form content:
+    - [Aeon](https://aeon.co/)
+    - [Nautilus](https://nautil.us/) has more of a scientific angle
+
 # Programming
 - Google's Abseil C++ library ([Github](https://github.com/abseil/abseil-cpp))
 - Facebook's Folly C++ library ([Github](https://github.com/facebook/folly)).  Built on top of Boost.
@@ -11,6 +16,8 @@ Junk drawer of things to look at when I have infinite free time.
 - Container building anti-patterns [blog post](https://jpetazzo.github.io/2021/11/30/docker-build-container-images-antipatterns/).
 - Facebook's [Pysa](https://engineering.fb.com/2020/08/07/security/pysa/).  Python static analysis tool.
 - [Deep dive](https://blog.palantir.com/optimizing-gits-merge-machinery-1-127ceb0ef2a1) on optimizing how `git merge` works.  [Part 2](https://blog.palantir.com/optimizing-gits-merge-machinery-2-d81391b97878) and [part 3](https://blog.palantir.com/optimizing-gits-merge-machinery-3-2dc7c7436978).
+- Comparing [Singularity](https://sylabs.io/guides/3.9/user-guide/) vs [Enroot](https://github.com/NVIDIA/enroot)
+- [Deeper dive](https://interrupt.memfault.com/blog/advanced-gdb) into GDB's features.
 
 # Emacs
 - [`Wilfred/deadgrep`](https://github.com/Wilfred/deadgrep) - fast search via `ripgrep`.
@@ -59,6 +66,7 @@ Junk drawer of things to look at when I have infinite free time.
 - Hacker News discussion on [good engineering blogs](https://news.ycombinator.com/item?id=29237308).
 - [John McCalpin "Dr. Bandwidth"'s blog](https://sites.utexas.edu/jdm4372/).  Deep dives on processor architectures with a TACC-centric focus.
 - [Paul Bridger](https://paulbridger.com/) is a ML engineer with several deep dive posts on optimizing computer vision models for inferencing.
+- [Ben Jojo](https://blog.benjojo.co.uk/) has a random collection of interesting, technical posts.  And a variety of [Github repos](https://github.com/benjojo?tab=repositories).
 
 # Productivity
 - HackerNews discussion on [hiring personal assistants](https://news.ycombinator.com/item?id=29336234).
@@ -66,6 +74,9 @@ Junk drawer of things to look at when I have infinite free time.
 ## Note Taking
 - [QuickDown](https://github.com/akaalias/quickdown) for MacOS.  Global hotkey to take a Markdown note.  Can complement [[Obsidian]].
 - [Alexis Rondeau's Github](https://github.com/akaalias).  Lots of [[Obsidian]]-related tools.
+
+# Miscellaneous
+- [Deep dive on LTO tapes](https://blog.benjojo.co.uk/post/lto-tape-backups-for-linux-nerds).  For old time nostalgia.
 
 # Machine Learning
 - DARPA's [Adversarial Robustness Toolbox (ART)](https://github.com/Trusted-AI/adversarial-robustness-toolbox/wiki/ART-Architecture-and-Roadmap). Attacks, defenses, and metrics for adversarial attacks on ML.  [Announcement](https://www.darpa.mil/news-events/2021-12-21).
@@ -87,6 +98,10 @@ Junk drawer of things to look at when I have infinite free time.
 - [L1 vs L2 regularization](https://explained.ai/regularization/L1vsL2.html).  Figures showing the difference.
 - Layer-wise Adaptive Rate Scaling (LARS) is used to train convolutional networks with very large batch sizes.  Presented in ["Large Batch Training of Convolutional Networks"](https://arxiv.org/abs/1708.03888v3) by You (2017).
 
+## Project Review
+- Review the [code and workflow](https://gitlab.com/stavros/deep-dreams) for the [Deep Dreams podcast](https://deepdreams.stavros.io/).  Language model to hallucinate a script and then neural text-to-speech to turn it into a podcast.
+- [Converting PDFs to audiobooks](https://daleonai.com/pdf-to-audiobook) overview.
+
 ## Activation Functions
 - Swish and Hard Swish.  Hard Swish is designed to be mobile processor friendly.
 
@@ -100,7 +115,9 @@ Junk drawer of things to look at when I have infinite free time.
         - PatternNet
         - NWPU-RESISC45
     - Aerial Image Dataset (AID) with 30 classes and 200-400 images per class.  Images are 600x600.
-    - 
+
+# Vision Transformers
+- ["Going deeper with image transformers"](https://arxiv.org/abs/2103.17239) by Touvron (2021) introduces CaiT and LayerScale.  Proposes that the CLS token needs to be treated differently as the original ViT architecture overloads its purpose.
 
 ## Representations
 - [Assessing quality of representations](https://wp.nyu.edu/cilvr/2020/09/24/representation-quality-and-the-complexity-of-learning/). Mentions the [Reprieve library](https://github.com/willwhitney/reprieve) for measuring quality - framework measures loss against a dataset and computes publication-ready plots.
