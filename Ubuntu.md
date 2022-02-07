@@ -1,5 +1,7 @@
 Tags: #linux
 
+Collection of random Ubuntu facts.
+
 # Versions
 Query the system's version:
 ```shell
@@ -27,3 +29,5 @@ Selection of versions seen:
 
 The contents of `/etc/debian_version` tell you the version of Debian. 
 
+# Mandatory Access Control
+Ubuntu apparently uses Apparmor instead of SELinux.
