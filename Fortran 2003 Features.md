@@ -1,5 +1,7 @@
 Tags: #software-engineering #fortran 
 
+[NAG's summary of changes](https://www.nag.com/nagware/np/r61_doc/nag_f2003.html) introduced in Fortran 2003.  The [ISO specification](https://wg5-fortran.org/f2003.html).
+
 # Array Initialization
 Prior to Fortran 2003, [[Fortran Features#Array Initialization|arrays were initialized]] with a list delimited by slashes (`/`):
 ```fortran
@@ -9,6 +11,22 @@ real :: x(5) = / 1.0, 2.0, 3.0, 4.0, 5.0 /
 Where as Fortran 2003 allows square brackets:
 ```fortran
 real :: x(5) = [ 1.0, 2.0, 3.0, 4.0, 5.0 ]
+```
+
+# Allocatable Dummy Arguments
+Fortran 95 allowed allocatable objects to be supplied as [[Fortran Features#Actual vs Dummy Arguments|actual arguments]] to procedures, though Fortran 2003 allowed dummy arguments to be allocatable.
+
+Thus, the following code is invalid Fortran 95 but valid Fortran 2003:
+```fortran
+function allocate_object( number_elements, default_value ) result( real_array )
+    integer, intent(in) :: number_elements
+    real, intent(in)    :: default_value
+    real, allocatable   :: real_array(:)
+
+    allocate( real_array(number_elements) )
+
+    real_array(:) = default_value
+end function allocate_object
 ```
 
 # Command Line Parsing
@@ -35,6 +53,12 @@ See this [PGI blog post](https://www.pgroup.com/blogs/posts/f03-oop-part1.htm) f
 Care needs to be taken since some earlier versions of OpenMP (v4.0 and older) do not properly handle `pass`.  See [here for a confirmation](https://community.intel.com/t5/Intel-Fortran-Compiler/Is-OpenMP-not-supporting-Fortran-2003-PASS-Finalization-etc/m-p/1034161) by [[Who's Who In Fortran#Steve Lionel|Steve Lionel]].
 
 # Derived Types
+## Allocatable Components
+Components in user-defined data types can now be `allocatable`.  [[Fortran90 Features#User-defined Data Types|Previously]], all component characteristics must be known at compile time.
+
+## Component Default Initialization
+
+
 ## Type-Bound Procedures
 A type's procedures are called type-bound procedures and are declared inside of the `type` definition, but only after the `contains` keyword.
 ## Overriding Methods
@@ -83,16 +107,80 @@ end type list
 
 abstract interface
 
-subroutine print_values( this )
-    import list
-    class(list) :: this
+    subroutine print_values( this )
+        import list
+        class(list) :: this
 
-    ! no definition goes here since it will be provided by a derived type.
-end subroutine
+        ! no definition goes here since it will be provided by a derived type.
+    end subroutine
 
 end interface
 ```
 
+Anatomy of the  `print_list()` declaration:
+- `print_list` is the type-bound procedure name
+- `print_values` is the interface name
+- `import list` defines the `list` type within the `print_values()` interface (there is no host association with interface blocks)
+ 
+# Polymorphism
+
+## type() vs class()
+A derived type can be used with both the `type()` and `class()` keywords and is somewhat confusing to those new to OOP in Fortran.
+
+The following code defines a hierarchy of shape types where `shape` is the base type, `rectangle` is a `shape`, and `square` is a `rectangle`:
+```fortran
+! shapes have a location and a color.
+type shape
+    integer :: x
+    integer :: y
+    integer :: color
+end type shape
+
+! rectangles are shapes that have a length and a width.
+type, extends(shape) :: rectangle
+    integer :: length
+    integer :: width
+end type rectangle
+
+! squares are special rectangles.
+type, extends(rectangle) :: square
+end type square
+```
+
+Use `type()` when defining a concrete object objects:
+```fortran
+subroutine do_stuff()
+    type(rectangle) :: rect1, rect2
+
+    ! print the sum of their lengths.
+    write(*,*) rect1%length + rect2%length
+    
+end subroutine do_stuff
+```
+
+Use `class()` when specifying which types are allowed:
+```fortran
+subroutine do_rectangle_stuff( rect1, rect2 )
+    class(rectangle), intent(in) :: rect1, rect2
+
+    ! print the sum of their lengths.
+    write(*,*) rect1%length + rect2%length
+    
+end subroutine do_rectangle_stuff
+
+...
+
+! instantiate an object of each type.
+type(shape)     :: my_shape
+type(rectangle) :: my_rectangle
+type(square)    :: my_square
+
+!do_rectangle_stuff( my_shape, my_shape )         ! Line 1
+do_rectangle_stuff( my_rectangle, my_rectangle )  ! Line 2
+do_rectangle_stuff( my_square, my_square )        ! Line 3
+```
+
+Line #1 is invalid since `shape` is not a `rectangle` and `do_rectangle_stuff()` specifies that it only takes `rectangle`-based types via `class(rectangle)`.  Line #3 works since `square` is a `rectangle` (as an extension of that type).
 # Allocations and Reallocations
 ## Reallocations
 Objects on the left-hand side can be reallocated during assignment if the shape of right-hand side differs.  In Fortran 95 the following code was illegal:
@@ -116,3 +204,41 @@ c = b
 
 ## Transferring Allocations
 Unsurprising given its name, `move_alloc()` transfers an allocatable object to another. 
+
+## Sourced Allocations (Cloning)
+The `allocate()` statement accepts a `source=` argument which specifies the type and value the allocated object will have after allocation.
+
+When using a sourced allocation, only one object can be allocated per call.
+
+### Molded Allocations
+Specifying the `source` argument sets the type and value of the source object.  Use the `mold` argument instead when one wants the type but not the value of the source object.
+
+# Pointer Dimensionality
+Pointers can have a different rank than the `target` they point to.  That is, a two-dimensional pointer can be associated with a one-dimensional `target` and indexing via the pointer accesses the associated linear position in the underlying array.
+
+```fortran
+integer, parameter :: N = 32
+real, pointer      :: matrix(:, :)
+real, allocatable  :: vector(:)
+
+allocate( vector(N * N) )
+
+matrix(1:N, 1:N) => vector
+```
+
+# User-defined Operators
+## Using Custom Operators
+Using a user-defined operator outside of the module that defines it requires knowing that the symbol name is of the form `operator(...)` rather than just the name of the operator.
+
+```fortran
+! SomeModule.f90
+...
+! define the binary operator "x", such that (a .x. b) is a valid expression.
+interface operator(.x.)
+    module procedure SomeModule_productVector
+end interface
+...
+
+! code_using_SomeModule.f90
+use SomeModule, only: operator(.x.)
+```
