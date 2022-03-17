@@ -29,3 +29,11 @@ fi
 
 ' --tag-name-filter cat -- --branches --tags
 ```
+
+By default, the above operates over the entire history.  Only a subset of commits can be processed by specifying `<SHA>...HEAD` to the `git filter-branch` command like so:
+
+```shell
+$ git filter-branch --env-filter '...' --tag-name-filter cat -- -branches --tags <SHA>..HEAD
+```
+
+**NOTE:** An arbitrary range cannot be processed, only the last N commits from `HEAD`.  See this [Stack Overflow post for details](https://stackoverflow.com/questions/15250070/running-filter-branch-over-a-range-of-commits).
