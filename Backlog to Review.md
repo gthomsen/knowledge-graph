@@ -30,6 +30,7 @@ Junk drawer of things to look at when I have infinite free time.
     - ["Minimizing privilege for building HPC containers"](https://arxiv.org/pdf/2104.07508.pdf) by Priedhorsky and Reid (2021)
 - [StackOverflow question](https://stackoverflow.com/questions/54039225/how-does-numpy-move-data-when-transpose-a-matrix) that explores data views and movement under transposition.
 - [Umpire](https://github.com/LLNL/Umpire) is a memory allocator library from LLNL.  Supports NUMA and GPUs. ["Umpire: Application-focused management and coordination of complex hierarchy memory"](https://ieeexplore.ieee.org/document/8907404).
+- [Advanced Fortran training slides](https://materials.prace-ri.eu/370/1/AdvFTN_handout.pdf).  Covers all Fortran specifications up to 2008.
 
 ## Tensor Contractions
 - Facebook's [Tensor Comprehensions library](https://ai.facebook.com/tools/tensorcomprehensions) generates GPU code from high-level mathematical descriptions.  Older library (from 2017) but is useful for understanding concepts/design.

@@ -34,6 +34,11 @@ Characters:
 - `[^...]` - any character not between the brackets
 - `[a-z]` - range of characters
 
+Syntax classes:
+- `\s-` - Whitespace characters
+- `\sw` - Word constituent
+- `\s_` - Symbol constituent
+
 Character classes:
 - `[:digit:]` - any digit
 - `[:alpha:]` - any letter
@@ -50,10 +55,13 @@ Useful keybindings:
 - `C-c C-s` - Go to the next match
 - `C-c C-r` - Go to the previous match
 - `C-c C-b` - Switch the target buffer the Builder searches
+- `C-c C-q` - Quit Regexp Builder
 
 By default the Builder accepts elisp syntax though this isn't the most intuitive.  The following switches it to human-readable (according to the syntax listed [[#Regular Expression Syntax|above]]) for interactive use:
 
 ```lisp
+# NOTE: 'read is the default.  set it back when editing existing regular
+#       expressions.
 (setq reb-re-syntax 'string)
 ```
 

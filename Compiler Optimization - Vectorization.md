@@ -62,6 +62,13 @@ Different compilers require different options:
 | GCC | `-O2 -ftree-vectorize` | `-fopt-info-vec` and `-fopt-info-vec-missed` | Unknown | `-O3` turns on vectorization without additional flags |
 
 
+### Intel Compilers
+Vectorization does not occur automatically unless `-O2` is specified.
+
+Vectorization reports are created for each file that is compiled (i.e. `foo.c` creates `foo.optrpt`, human readable) with different levels of verbosity.  Report level 1 (`-qopt-report-phase=vec -qopt-report=1`) reports loops that were vectorized, while report level 2 (`-qopt-report-phase=vec -qopt-report=2`) reports loops that were vectorized and specifies why the remaining loops were not.
+
+See [here](https://www.intel.com/content/www/us/en/develop/documentation/cpp-compiler-auto-vectorization-tutorial/top/tutorial-linux-and-macos-version/generating-a-vectorization-report.html) for details.
+
 # Data Alignment
 Vectorized data loads and stores typically need to be aligned (**NOTE**: newer Intel architectures are more forgiving for unaligned accesses). 
 
