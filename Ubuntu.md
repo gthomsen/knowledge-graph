@@ -16,6 +16,7 @@ Codename:       focal
 Versions are of the form `YY.MM` and have a codename (e.g. `hirsute`).  Multiple Ubuntu releases come from the same [[Debian]] version (e.g. `bullseye`).
 
 Selection of versions seen:
+- 22.04: jammy (bullseye)
 - 21.10: impish (bullseye)
 - 21.04: hirsute (bullseye)
 - 20.04: focal (bullseye)
