@@ -18,7 +18,7 @@ Two-level hierarchy with 20 top-level categories and a total of 100 classes:
 - Fish
 - Flowers
 - Food containers
-- Fruit and vegatables
+- Fruit and vegetables
 - Household electrical devices
 - Household furniture
 - Insects

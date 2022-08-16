@@ -1,6 +1,6 @@
 Tags: #python #conda #user-configuration 
 
-Channels can be specified in `.condarc` so they aren't repeatedly specified on the command line.  Priotization can also be requested in the case where channels overlap in what they offer.
+Channels can be specified in `.condarc` so they aren't repeatedly specified on the command line.  Prioritization can also be requested in the case where channels overlap in what they offer.
 
 Specified like so:
 ```shell
