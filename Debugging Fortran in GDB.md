@@ -93,3 +93,54 @@ Tag: #unfinished
 Libraries used by `gfortran` include:
 - `libgfortran.so`
 - `libgcc_s.so`
+
+# Serializing Variables to Disk
+Writing arrays to disk so they can be visualized externally is a critical tool when debugging algorithm implementations and GDB's `dump` command allows one to do it.  Care needs to be taken to take the address of a particular variable or array entry via the `&` operator like so:
+
+```gdb
+(gdb) dump binary memory foo.bin &array &array(256, 16)
+```
+
+Watch out for the oh-so-helpful `Value can't be converted to integer.` message if you don't specify the address of a variable:
+```gdb
+(gdb) dump binary memory foo.bin variable(1, 1) variable(256, 16)
+Value can't be converted to integer.
+```
+
+***NOTE:*** You may have to set `max-value-size` to a sufficiently large number (or `unlimited`) to serialize large arrays, like so:
+```gdb
+(gdb) set max-value-size unlimited
+```
+
+# Stopping the Debugger at a Fortran Run-time Error
+Both gfortran and ifort allow for run-time validation to aide in development and debugging.  One can cause the debugger to stop when a run-time error is encountered by setting a breakpoint on a compiler-specific routine.
+
+## GDB
+Set a breakpoint on the `_gfortran_runtime_error_at` symbol to stop after the error has been encountered:
+
+```gdb
+(gdb) break _gfortran_runtime_error_at
+Breakpoint 1 at 0x7f123fc0c8b0
+(gdb) continue
+Thread 1 "nsem_particle_t" hit Breakpoint 1, 0x00007f123fc0c8b0 in _gfortran_runtime_error_at () from /usr/lib/x86_64-linux-gnu/ligfortran.so.5
+(gdb) where
+#0  0x00007f123fc0c8b0 in _gfortran_runtime_error_at ()
+   from /usr/lib/x86_64-linux-gnu/libgfortran.so.5
+#1  0x000055b63ac9afc0 in scatter::extract_local_grid (
+    solver_grid_x=<error reading variable: value requires 1272384 bytes, which is more than max-value-size>,
+    solver_grid_y=<error reading variable: value requires 1272384 bytes, which is more than max-value-size>,
+    solver_grid_z=<error reading variable: value requires 1272384 bytes, which is more than max-value-size>) at Solver.f90:312
+#2  0x000055b63ac8df44 in driver () at Driver.f90:207
+#3  0x000055b63ac8ebed in main (argc=1, argv=0x7fff540f8098) at Driver.f90:3
+#4  0x00007f123f8d6565 in __libc_start_main ()
+   from /usr/lib/86_64-linux-gnu/libc.so.6
+#5  0x000055b63ac8d44e in _start ()
+```
+
+The program threw a run-time error at `Solver.f90:312` and can be debugged as normal.
+
+# Investigating State
+```
+(gdb) info module variables
+(gdb) info module functions
+```
