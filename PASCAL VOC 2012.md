@@ -2,15 +2,17 @@ Tags: #ml-dataset #computer-vision
 
 8th (and final) year of the PASCAL VOC Challenges.
 
-| Source | Date | Label Types | Samples (Train/Validation/Test/Testval) | Classes | Commercial Use? |
+| Source | Date | Label Types | Samples (Train/Validation/Test) | Classes | Commercial Use? |
 | --- | --- | --- | --- | --- | --- |
-| [Website](http://host.robots.ox.ac.uk/pascal/VOC/voc2012/) | 2012 | Classes, bounding boxes, difficulty flag | ? (?/?/?/?) | 20 | [Flickr Terms of Use](http://www.flickr.com/terms.gne?legacy=1) |
+| [Website](http://host.robots.ox.ac.uk/pascal/VOC/voc2012/) | 2012 | Classes, bounding boxes, difficulty flag | 11,540+ (5,717/5,823/?) | 20 | [Flickr Terms of Use](http://www.flickr.com/terms.gne?legacy=1) |
 
 # Details
  [Development Kit PDF](http://host.robots.ox.ac.uk/pascal/VOC/voc2012/devkit_doc.pdf) describing the challenges, data, labels, and submission process.  [Training/validation data](http://host.robots.ox.ac.uk/pascal/VOC/voc2012/VOCtrainval_11-May-2012.tar) is ~2 GB, [test data](http://host.robots.ox.ac.uk:8080/) may be available in aggregate, but requires an account.  Metadata are provided in HDF5 format.
  
 ## Samples
 Color images in JPEG format.  Presumably sourced from Flickr given the licensing.
+
+Test data are withheld due to the original challenges that introduced the dataset.
 
 ## Classes
 Two-level hierarchy of simple classes (same as [[PASCAL VOC 2007]]):

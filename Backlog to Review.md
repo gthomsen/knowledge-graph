@@ -10,6 +10,8 @@ Junk drawer of things to look at when I have infinite free time.
 # Programming
 - Google's Abseil C++ library ([Github](https://github.com/abseil/abseil-cpp))
 - Facebook's Folly C++ library ([Github](https://github.com/facebook/folly)).  Built on top of Boost.
+- Overview of WTFs in Python ([Github](https://github.com/satwikkansal/wtfpython)).
+- [Locking engineering principles](https://blog.ffwll.ch/2022/07/locking-engineering.html) - protect data, not code.
 
 ## Tooling
 - Facebook's [`drgn` kernel debugger](https://developers.facebook.com/blog/post/2021/12/09/drgn-how-linux-kernel-team-meta-debugs-kernel-scale/).  Python environment that has access to the kernel's symbols.
@@ -18,6 +20,16 @@ Junk drawer of things to look at when I have infinite free time.
 - [Deep dive](https://blog.palantir.com/optimizing-gits-merge-machinery-1-127ceb0ef2a1) on optimizing how `git merge` works.  [Part 2](https://blog.palantir.com/optimizing-gits-merge-machinery-2-d81391b97878) and [part 3](https://blog.palantir.com/optimizing-gits-merge-machinery-3-2dc7c7436978).
 - Comparing [Singularity](https://sylabs.io/guides/3.9/user-guide/) vs [Enroot](https://github.com/NVIDIA/enroot)
 - [Deeper dive](https://interrupt.memfault.com/blog/advanced-gdb) into GDB's features.
+- [CMake workshop](https://github.com/ENCCS/cmake-workshop) from EuroCC National Competence Center Sweden (ENCCS)
+- [GDB Enhanced Features (GEF)](https://github.com/hugsy/gef) - batteries included Python script to assist in reverse engineering
+- [Heaptrack](https://github.com/KDE/heaptrack) traces memory allocations for performance analysis.
+- [ShellCheck](https://github.com/koalaman/shellcheck) to lint shell scripts.
+
+## Miscellaneous
+- Deep dive into [how to build bounding volume hierarchy (BVH)](https://jacco.ompf2.com/2022/04/13/how-to-build-a-bvh-part-1-basics/).
+- Journey into why the [PC version of Elden Ring has frame stutters](https://mamoniem.com/behind-the-pretty-frames-elden-ring/).
+- [Profiling Linux pipe performance](https://mazzo.li/posts/fast-pipes.html) in 2022.
+- [WebGPU explanation](https://acko.net/blog/the-gpu-banana-stand/) with divergence into topology (dual-spaces), fluid dynamics simulation, and mesh generation.  Lots of pictures.
 
 # Emacs
 - [`Wilfred/deadgrep`](https://github.com/Wilfred/deadgrep) - fast search via `ripgrep`.
@@ -31,6 +43,7 @@ Junk drawer of things to look at when I have infinite free time.
 - [StackOverflow question](https://stackoverflow.com/questions/54039225/how-does-numpy-move-data-when-transpose-a-matrix) that explores data views and movement under transposition.
 - [Umpire](https://github.com/LLNL/Umpire) is a memory allocator library from LLNL.  Supports NUMA and GPUs. ["Umpire: Application-focused management and coordination of complex hierarchy memory"](https://ieeexplore.ieee.org/document/8907404).
 - [Advanced Fortran training slides](https://materials.prace-ri.eu/370/1/AdvFTN_handout.pdf).  Covers all Fortran specifications up to 2008.
+- [Major issue](https://gitlab.com/lfortran/lfortran/-/issues/496) blocking LFortran's `lfmt` from properly reformatting Fortran code.  [Overview of other issues](https://gitlab.com/lfortran/lfortran/-/issues/224) required to handle comments.
 
 ## Tensor Contractions
 - Facebook's [Tensor Comprehensions library](https://ai.facebook.com/tools/tensorcomprehensions) generates GPU code from high-level mathematical descriptions.  Older library (from 2017) but is useful for understanding concepts/design.
@@ -68,6 +81,9 @@ Junk drawer of things to look at when I have infinite free time.
 - [John McCalpin "Dr. Bandwidth"'s blog](https://sites.utexas.edu/jdm4372/).  Deep dives on processor architectures with a TACC-centric focus.
 - [Paul Bridger](https://paulbridger.com/) is a ML engineer with several deep dive posts on optimizing computer vision models for inferencing.
 - [Ben Jojo](https://blog.benjojo.co.uk/) has a random collection of interesting, technical posts.  And a variety of [Github repos](https://github.com/benjojo?tab=repositories).
+- [Raymond Chen's blog](https://devblogs.microsoft.com/oldnewthing/) is a well presented, with regular postings, C++ programming blog.  Windows-bent (Chen works at Microsoft) though accessible.
+- [Ondřej Čertík's's blog](https://ondrejcertik.com/blog/).  Focus on modern Fortran from the lead on [LFortran](https://lfortran.org/).  [Gitlab](https://gitlab.com/certik) page.
+- [Detailed explanation of technical concepts](https://wunkolo.github.io/) by Wunk.  Includes SIMD intrinsics and OpenGL visualization.
 
 # Productivity
 - HackerNews discussion on [hiring personal assistants](https://news.ycombinator.com/item?id=29336234).
@@ -78,6 +94,7 @@ Junk drawer of things to look at when I have infinite free time.
 
 # Miscellaneous
 - [Deep dive on LTO tapes](https://blog.benjojo.co.uk/post/lto-tape-backups-for-linux-nerds).  For old time nostalgia.
+- [Explanation of high dynamic range (HDR)](https://sid.onlinelibrary.wiley.com/doi/full/10.1002/msid.1060).
 
 # Machine Learning
 - DARPA's [Adversarial Robustness Toolbox (ART)](https://github.com/Trusted-AI/adversarial-robustness-toolbox/wiki/ART-Architecture-and-Roadmap). Attacks, defenses, and metrics for adversarial attacks on ML.  [Announcement](https://www.darpa.mil/news-events/2021-12-21).
@@ -98,6 +115,8 @@ Junk drawer of things to look at when I have infinite free time.
 - [Gradient checkpointing with PyTorch](https://spell.ml/blog/gradient-checkpointing-pytorch-YGypLBAAACEAefHs) blog post.
 - [L1 vs L2 regularization](https://explained.ai/regularization/L1vsL2.html).  Figures showing the difference.
 - Layer-wise Adaptive Rate Scaling (LARS) is used to train convolutional networks with very large batch sizes.  Presented in ["Large Batch Training of Convolutional Networks"](https://arxiv.org/abs/1708.03888v3) by You (2017).
+- [Visual explanation of double descent](https://mlu-explain.github.io/double-descent/).
+- Deep dive on how [8-bit quantization](https://timdettmers.com/2022/08/17/llm-int8-and-emergent-features/) works.
 
 ## Project Review
 - Review the [code and workflow](https://gitlab.com/stavros/deep-dreams) for the [Deep Dreams podcast](https://deepdreams.stavros.io/).  Language model to hallucinate a script and then neural text-to-speech to turn it into a podcast.

@@ -10,7 +10,7 @@ Add `escape ^Jj` into `~/.screenrc` to remap it to `Ctrl-j`.
 # Flow Control
 When flow control is disabled, `Ctrl-s` cannot be sent to the system which prevents Emacs from searching (`C-s`) or saving (`C-x C-s`).
 
-Toggle flow control via `C-j f`.
+Toggle flow control via `C-j f`.  Alternatively, `C-j : flow off` if one can't remember the keybinding.
 
 GNU screen's [manual on the topic](https://web.mit.edu/gnu/doc/html/screen_14.html).
 
