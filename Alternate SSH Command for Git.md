@@ -2,7 +2,7 @@ Tags: #ssh #git
 
 Controlling SSH configuration when interacting with Git is typically done via `${HOME}/.ssh/config` (e.g. specifying the use of specific keys, or using `ProxyJump` to navigate multiple bastion hosts), though that does not good when one needs to use a different SSH client for the underlying connection.  This can be required when the remote system supplies a custom distribution, perhaps for using Kerberos for authentication. 
 
-In this case, one can either specify an environment variable or the `core.sshCommand` variable in the appropriate `.gitconfig`.
+In this case, one can either specify an environment variable (`GIT_SSH`) or the `core.sshCommand` variable in the appropriate `.gitconfig`.
 
 Without specifying either, the first SSH client found in the `PATH` is used and the connection is rejected:
 ```shell
@@ -25,3 +25,5 @@ updating local tracking ref 'refs/remotes/host/testing'
 ```
 
 See [`git-config(1)`](https://git-scm.com/docs/git-config) for more details.
+
+The specification of an alternative remote shell is similar to how [[Alternate SSH Command for rsync|`rsync`]] does it.
