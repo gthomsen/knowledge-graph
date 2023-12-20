@@ -29,3 +29,18 @@ c = b
 ```
 
 Note that `-Wuninitialized` and `-Wmaybe-uninitialized` is turned on when `-Wall` is enabled, so consider `-Wall -Wno-uninitialized -Wno-maybe-uninitialized` instead (**NOTE:** this may be incorrect and that `-Wextra` enables these, though the fix is the same).
+
+# Observed Undefined Behavior with Pointer Intents
+The Fortran 2003 specification allows [[Fortran 2003 Features#Pointer Intents|pointers to have `intent` attributes]], though it is a specifier on the pointer itself and ***NOT*** what it points to.  As a result, pointers marked as `intent(out)` have an undefined association which means it does not have to point to what it did in the caller's scope.
+
+It appears that gfortran (versions 7.5 through 11.3) does not modify a pointer's association under normal circumstances, while ifort (2021.4-2021.6) does.  Thus, this broken code appears to be correct when compiled with gfortran but "mysteriously" breaks under ifort:
+
+```fortran
+subroutine compute_with_array( array_pointer )
+    real, dimension(:, :, :), pointer, intent(out) :: array_pointer
+
+    ! UNDEFINED: array_pointer is not guaranteed to point to anything
+    ! regardless of its status in the caller's scope.
+    array_pointer(1, 1, 1) = 0.0
+end subroutine
+```

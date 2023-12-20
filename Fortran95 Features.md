@@ -42,3 +42,6 @@ Default initialization rules for user-defined type were specified.
 Code can be organized and reused through modules.  Provides a scope to a subset of global variables.  Calling code can incorporate a module's variables wholesale (`use module`) or as needed (`use module, only: var1, var2`).
 
 By default, module variables do not retain their values and require explicit annotation with the `save` attribute.  [[Fortran 2008 Features#Module Variables are Saved|All variables implicitly have the `save` attribute]] in Fortran 2008.
+
+# Minimal Width Formatting
+The `I0` edit descriptor was introduced so that integers could be written without knowing how many digits were needed, or with additional padding.

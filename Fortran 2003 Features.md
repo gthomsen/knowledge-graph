@@ -181,6 +181,27 @@ do_rectangle_stuff( my_square, my_square )        ! Line 3
 ```
 
 Line #1 is invalid since `shape` is not a `rectangle` and `do_rectangle_stuff()` specifies that it only takes `rectangle`-based types via `class(rectangle)`.  Line #3 works since `square` is a `rectangle` (as an extension of that type).
+
+## Unlimited Polymorphic Types
+Generic procedures that accept arbitrary types for its dummy arguments can be written by specifying their types as `class(*)`.  Such arguments' types are unlimited polymorphic.  These have no declared type and do not have the same type as any other variable, though are type compatible with everything.
+
+Unlimited polymorphic types ***MUST*** use `select type` to identify the concrete type so the variable can be used:
+```fortran
+
+subroutine generic_subroutine( arbitrary_type )
+    class(*) :: arbitrary_type
+
+    select type
+    type is integer
+        ! arbitrary_type is integer.
+    type is real
+        ! arbitrary_type is real.
+    class default
+        ! the default case cannot directly use the arbitrary_type variable.
+    end select
+end subroutine
+```
+
 # Allocations and Reallocations
 ## Reallocations
 Objects on the left-hand side can be reallocated during assignment if the shape of right-hand side differs.  In Fortran 95 the following code was illegal:
@@ -242,3 +263,66 @@ end interface
 ! code_using_SomeModule.f90
 use SomeModule, only: operator(.x.)
 ```
+
+# Pointer Intents
+The `intent` attribute can now be specified for pointers and applies to the pointer itself, rather than what it points to.  As a result, an `intent(in)` pointer can modify what it points to but cannot change what it points to, or its association status.  See the following code:
+
+```fortran
+subroutine pointer_modification( integer_pointer )
+    integer, pointer, intent(in) :: integer_pointer
+    integer, target              :: local_integer
+
+    local_integer = 3
+
+    ! read from where integer_pointer points to.
+    local_integer = integer_pointer    
+
+    ! write to where integer_pointer points to.
+    integer_pointer = 10
+
+    ! ILLEGAL: cannot change where integer_pointer points to!
+    !integer_pointer => local_integer
+    !deallocate( integer_pointer )
+    !allocate( integer_pointer )
+end subroutine
+```
+
+It should also be noted that pointers with `intent(out)` have an undefined association status at the beginning of their scope.  This means pointers may retain their association status they had when supplied by the caller, or they may become undefined.  The following code is broken:
+
+```fortran
+subroutine undefined_pointer( integer_pointer )
+    integer, pointer, intent(out) :: integer_pointer
+    integer                       :: local_integer
+
+    ! UNDEFINED: integer_pointer is not guaranteed to point to anything
+    ! regardless of its status in the caller's scope.
+    local_integer = integer_pointer
+end subroutine
+```
+
+# I/O Enhancements
+
+## Stream Access
+Opening a file with `access="stream"` allows it to be read from/written to in units of "file storage units" for both formatted and unformatted files.  
+
+Materially, this allows interoperability with binary files that do not contain a record header (as produced when opened with `form="unformatted"`) or were produced outside of a Fortran program.  
+
+The following writes a file 131,136 bytes long containing exactly 16x 32-bit integers followed by 16,384x 64-bit floating point values:
+```fortran
+use, intrinsic::iso_c_binding, only  :: C_INT32_T, C_DOUBLE
+
+integer, parameter :: HEADER_LENGTH = 16
+integer, parameter :: DATA_LENGTH   = 16*1024
+
+integer(kind=C_INT32_T) :: file_header(HEADER_LENGTH)
+real(kind=C_DOUBLE)     :: file_data(DATA_LENGTH)
+
+open( unit=file_unit, file="test.dat", form="unformatted", access="stream", action="write" )
+
+write( file_unit ) file_header
+write( file_unit ) file_data
+
+close( file_unit )
+```
+
+***NOTE***: The on-disk representation is sensitive to the size of the data types used in the program, so care is required to use well known data types or to only use the files on the same system with the same compiler (and compilation flags).

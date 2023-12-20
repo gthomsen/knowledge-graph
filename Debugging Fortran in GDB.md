@@ -144,3 +144,33 @@ The program threw a run-time error at `Solver.f90:312` and can be debugged as no
 (gdb) info module variables
 (gdb) info module functions
 ```
+
+# Calling C Interfaces from Fortran
+Variables/parameters are interpreted differently when calling C interfaces depending on the source language.  Calling a C routine from within GDB requires changing the source language to C to avoid surprising behavior, including:
+1. Symbol name case changes
+2. XXX
+
+For a C interface like so:
+```c
+int locate_nans_f64( double *double_array, int number_elements );
+```
+
+Calling  `locate_nans_f64()` with Fortran as the current language will result in the following:
+```gdb
+(gdb) call locate_nans_f64( &Nrhoh2vect, 184320 )
+No symbol "Nrhoh2vect" in current context.
+```
+
+This is because Fortran symbols are implicitly lower-cased and `Nrhoh2vect` does not exist in the binary, though `nrhoh2vect` does.  Changing the case does not work and results in the following:
+```gdb
+(gdb) call locate_nans_f64( &nrhoh2vect, 184320 )
+Empty region supplied.
+$1 = 0
+```
+
+The `Empty region supplied` message only appears if the 2nd argument is not positive which means the length parameter (`184320`) is incorrectly interpreted (i.e. as a negative value).  Changing the language to C to match the interface results in the correct behavior:
+```gdb
+(gdb) set language c
+(gdb) call locate_nans_f64( &nrhoh2vect, 184320 )
+$1 = 0
+```

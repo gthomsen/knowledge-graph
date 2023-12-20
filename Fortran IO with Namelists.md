@@ -46,8 +46,12 @@ Whitespace before and after the `=` separator is ignored.
 
 Keys may be repeated multiple times and the value is that of the last encountered key.
 
+Strings should be quoted.  In reality, the interplay between opening units with the `DELIM=` argument, reading from internal files (reading from a string), and writing files that will be read in as namelists is complicated - but all of that can be sidestepped by being standards-compliant and quoting strings.  See [[#Quoting Character Variables|here for more details]].
+
 ## Writing
-The namelist name and all keys are written in upper-case.
+The namelist name and all keys are written in upper-case.  
+
+Be careful about opening the output unit with `DELIM=` set to anything except `DELIM=quote` as the [[#Quoting Character Variables|output generated is not standards-compliant]].
 
 ## Portability
 Some compilers are lenient when parsing a namelist file which leads to portability issues between systems.  Just because one compiler reads a namelist file does not mean that it correct.
@@ -57,5 +61,15 @@ Debugging a non-compliant namelist file can be a pain, and may manifest in a num
 Check the following when I/O errors occur:
 
 - [No spaces between start of name list and its name](https://stackoverflow.com/questions/35758473/error-using-namelist-in-gfortran)
+- Strings must be quoted.
 - Make sure line endings are consistent and match the OS
 - Move the trailing slash to a new line
+
+# Quoting Character Variables
+What is a standards-compliant character variable input is complicated, but character variables must have quotes.  This [dialog](https://community.intel.com/t5/Intel-Fortran-Compiler/Non-delimited-strings-in-a-namelist-is-not-a-sane-default/m-p/1134545) between Marshall Ward and [[Who's Who In Fortran#Steve Lionel|Steve Lionel]] indicates that quoted strings are standards-compliant, and that non-quoted strings are undefined behavior leaving the compiler to do whatever they want - complain or silently accept unquoted strings (because it is compiler-dependent behavior to handle non-standards-compliant situations).  [Section 10.10 of the Fortran 2003 specification](https://wg5-fortran.org/N1601-N1650/N1601.pdf) ([here are all sections and updates](https://wg5-fortran.org/f2003.html)) is particularly opaque about what is compliant, though Note 10.35 specifies:
+
+```
+A character sequence corresponding to a namelist input item of character type shall be delimited either with apostrophes or with quotes. The delimiter is required to avoid ambiguity between undelimited character sequences and object names. The value of the DELIM= specifier, if any, in the OPEN statement for an external file is ignored during namelist input (9.4.5.6).
+```
+
+Care needs to be taken when writing outputs that will be read as namelist inputs.  Do not change the `DELIM=` parameter unless the character variables written are already quoted.
