@@ -14,3 +14,9 @@ Suppressing scientific notation is done like so:
 ```python
 numpy.set_printoptions( suppress=True )
 ```
+
+A context manager interface is also available to avoid having to get and restore the previous options:
+```python
+with numpy.printoptions( precision=10 ):
+    print( numpy_array )
+```
