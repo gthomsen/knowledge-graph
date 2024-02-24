@@ -1,10 +1,12 @@
-Tags: #macos #firefox 
+Tags: #macos #firefox #emacs
 
 The following are resources for configuring dark mode across a variety of applications.  Useful when working in a low light environment or on a HDR display that has *really* bright whites.
 # MacOS
 In the Settings application, under `Appearance` set the theme to `Dark`.  For newer versions of OS X (at least 14.x), this does not change the top menu bar.  That is changed to a dark menu bar in `Accessibility -> Display` and toggling `Reduce transparency`.
+
 # Firefox
 Set `Settings -> General -> Language and Appearance -> Website Appearance` to `Dark`.
+
 # Firefox Extensions
 ## Stylus
 Provides custom CSS for specific sites.  Each style added to Stylus provides CSS for one site, so multiple styles are required. 
@@ -32,15 +34,16 @@ Configure brightness and contrast on a per-site basis.  This sets a default for 
 Freeplane doesn't have a native dark mode, but provides different dark templates for new files.  To set one, go to `Preferences -> Environment -> Files -> Standard Template File` and select a `.mm` that specifies the template.  Several dark mode templates are named `dark_*.mm`.  Once selected, one does not have to restart Freeplane for this update to take affect with new files.
 
 Alternatively, one can simply make updates to the `standard-1.6-noEdgeColor.mm` file found in the user directory's `template/` subdirectory.  Go to `Tools -> Open user directory`, navigate to `template/` and open `standard-1.6-noEdgeColor.mm`.  Change the file's style as desired and then save it.  All newly created files will inherit the configured style.  A minimal update to get dark mode is to change the map's background color to gray via `Format -> Map background -> Background color`.
+
 # Jupyter Notebooks
 Notebooks can be themed on a per environment basis (one the desired theme is found, add it to the `base` Anaconda environment so clones pick it up).  Install the `jupyterthemes` package to get a set of themes:
 ```
-conda install -c conda-forge jupyterthemes
+$ conda install -c conda-forge jupyterthemes
 ```
 
 Available themes can be listed with:
 ```
-jt -l
+$ jt -l
 ```
 
 Available dark themes as of 2023/12/20:
@@ -53,7 +56,17 @@ Available dark themes as of 2023/12/20:
 
 Install a theme via:
 ```
-jt -t <theme>
+$ jt -t <theme>
 ```
 
 Open (or reload) a notebook for the style to be applied.
+
+# Emacs
+Specific dark themes can be installed, though the following appears to be a minimal configuration to invert colors when running in graphical mode.
+
+```lisp
+(when (display-graphic-p)
+  (invert-face 'default)
+)
+(set-variable 'frame-background-mode 'dark)
+```
