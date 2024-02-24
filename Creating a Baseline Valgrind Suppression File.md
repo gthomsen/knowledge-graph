@@ -20,7 +20,7 @@ $ valgrind \
 $ valgrind \
     --leak-check=full \
     --error-limit=no \
-    -s \
+    --show-error-list=yes \
     --suppressions=baseline.suppressions \
     application args
 ```
