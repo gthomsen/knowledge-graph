@@ -8,7 +8,7 @@ Consider the following sequence of commits (going backwards from `HEAD`):
 3. `15c2df2` - Second commit to push
 4. `eb7106e` - Most recent commit in the remote (`(origin/branch_name)`)
 
-The following pushes just commits `67c6852` and `15c2df2`, but not `f7dfc30`:
+The following dry runs the push to confirm that just commits `67c6852` and `15c2df2`, but not `f7dfc30`, would be sent:
 
 ```shell
 $ git push -n origin branch_name~1:branch_name
