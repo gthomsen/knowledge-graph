@@ -7,3 +7,4 @@ Compiling an MPI application is typically done via a MPI distribution's compiler
 | OpenMPI | `--showme`| `mpif90 --showme -c foo.f90 -o foo.o` |
 | HPE Message Passing Toolkit (MPT) | `-show` | `mpif90 -show -c foo.f90 -o foo.o` |
 | Cray MPICH | `-craype-verbose` | `ftn -craype-verbose -c foo.f90 -o foo.o` |
+| Intel MPI | `-show` | `mpiifort -show -c foo.f90 -o foo.o` |
