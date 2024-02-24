@@ -6,6 +6,14 @@ Make sure to switch the language to Fortran, otherwise interpretation of symbols
 (gdb) set lang fortran
 ```
 
+# Breakpoint Conditionals
+Conditionals are specified in the current language.  For example, stopping at a breakpoint when two values do not equal each other requires the use of `.ne.`:
+```
+(gdb) break foo.f90:1234
+Breakpoint 1 at 0x561bd3bfa857: file foo.f90, line 1234.
+(gdb) cond 1 (value1 .ne. value2) 
+```
+
 # Function Return Values
 Inspecting results returned from a function from within said function is not as simple as printing the named variable.   Consider the following:
 ```fortran
@@ -45,6 +53,12 @@ Inspecting the variable in GDB requires `transverse::cy` and not `cy`:
 No symbol "cy" in current context.
 (gdb) print transverse::cy
 $1 = <not allocated>
+```
+
+That said, if one knows the name mangling scheme used variables can be accessed anywhere in the program, regardless of whether the module (`transverse` above) was used in the current scope or not.  Note that accessing the symbol requires casting it to the appropriate type as GDB doesn't (sometimes?) know that information.  The following assumes a `__<module>_MOD_<name>` mangling scheme (this is found with GNU gfortran):
+```
+(gdb) p (integer)__transverse_mod_cy
+128
 ```
 
 # Derived Types
@@ -94,6 +108,14 @@ Libraries used by `gfortran` include:
 - `libgfortran.so`
 - `libgcc_s.so`
 
+`libgfortran.so` calls `_gfortran_runtime_error_at()` when a run-time error occurs, so setting a breakpoint on it allows inspecting program state before it exits:
+```
+(gdb) break _gfortran_runtime_error_at
+(gdb) run
+...
+Thread 6 "foo.x" hit Breakpoint 1, 0x00007f7ec0107990 in _gfortran_runtime_error_at () from /lib/x86_64-linux-gnu/libgfortran.so.5
+```
+
 # Serializing Variables to Disk
 Writing arrays to disk so they can be visualized externally is a critical tool when debugging algorithm implementations and GDB's `dump` command allows one to do it.  Care needs to be taken to take the address of a particular variable or array entry via the `&` operator like so:
 
@@ -110,6 +132,18 @@ Value can't be converted to integer.
 ***NOTE:*** You may have to set `max-value-size` to a sufficiently large number (or `unlimited`) to serialize large arrays, like so:
 ```gdb
 (gdb) set max-value-size unlimited
+```
+
+***NOTE:*** Dumping a 1D array using its upper bound index will produces a file with one less element in it:
+
+```
+# this produces a file with 10239 elements!
+(gdb) dump binary memory foo.bin &array_1D &array_1D(10240)
+```
+
+To get all of the elements, use an offset relative to the first index:
+```
+(gdb) dump binary memory foo.bin &array_1D &array_1D + 10240
 ```
 
 # Stopping the Debugger at a Fortran Run-time Error
